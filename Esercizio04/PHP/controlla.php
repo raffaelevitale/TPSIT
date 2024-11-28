@@ -9,24 +9,34 @@
     <body>
 
         <?php
-            // TO DO
-
-            function leggiParametri($vetPar){
-                
+           function leggiParametri($vetPar) {
+                // TO DO
             }
+            
 
-            $n1 = 0;
-            $n2 = 0;
-            $n3 = 0;
+            $N1 = 0;
+            $N2 = 0;
+            $N3 = 0;
 
-            //mi arrivano i dati dal form tramite GET
-
-            if($_SERVER["REQUEST_METHOD"] == "GET") {
+            // Recupero i Parametri (Numeri da Controllare)
+            if ($_SERVER["REQUEST_METHOD"] == "GET")
                 leggiParametri($_GET);
-            }
+            else if ($_SERVER["REQUEST_METHOD"] == "POST")
+                leggiParametri($_POST);
+
+            // da finire
+
+            echo("</br></br>");
+
+            if ($N1 > $N2 && $N1 > $N3)
+                echo("Il Maggiore è [$N1]");
+            else if ($N2 > $N3)
+                echo("Il Maggiore è [$N2]");
+            else
+                echo("Il Maggiore è [$N3]");
+            
         ?>
 
     </body>
-
 
 </html>
