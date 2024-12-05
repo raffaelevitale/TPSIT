@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="it">
+
+    <head>
+        <title>Esercizio XX PHP - </title>
+        <meta charset="UTF-8">
+        <!-- Fogli Stile utilizzati-->
+        <link rel="stylesheet" type="text/css" href="CSS/style.css" />
+        <!-- JQuery Esterni alla Pagina -->
+        <script type="text/javascript" src="JQuery/JQuery371.js"></script>
+        <!-- JavaScript Esterni alla Pagina -->
+        <script type="text/javascript" src="JS/script.js"></script>
+        <!-- JavaScript Interni alla Pagina -->
+        <script type="text/javascript">
+        </script>
+    </head>
+    <body>   
+        <form action="" method="" id="frmRegistrazione">
+
+			Nominativo: <input type="text" name="txtNome" id="txtNome" placeholder="Inserisci il tuo Cognome / Nome" />
+
+			<br/><br/>
+
+			Indirizzo di Studio:
+			<br/><input type="radio" name="rdbIndirizzo"  value="Informatica" />Informatica
+			<br/><input type="radio" name="rdbIndirizzo"  value="Meccanica" />Meccanica
+			<br/><input type="radio" name="rdbIndirizzo"  value="Elettrotecnica" />Elettrotecnica
+			<br/><input type="radio" name="rdbIndirizzo"  value="LSSA" />LSSA
+
+			<br/><br/>
+
+			Hobbies:
+			<br/><input type="checkbox" name="chkHobbies[]" value="Sport" />Sport
+			<br/><input type="checkbox" name="chkHobbies[]" value="Musica" />Musica
+			<br/><input type="checkbox" name="chkHobbies[]" value="Cinema" />Cinema
+			<br/><input type="checkbox" name="chkHobbies[]" value="Lettura" />Lettura
+
+			<br/><br/>
+
+			Città di Residenza:
+			<select name="lstCitta">
+				<option value="Fossano">Fossano</option>
+				<option value="Bra">Bra</option>
+				<option value="Savigliano">Savigliano</option>
+				<option value="Cuneo">Cuneo</option>
+				<option value="Alba">Alba</option>
+				<option value="Mondovì">Mondovì</option>
+				<option value="Saluzzo">Saluzzo</option>
+			</select>
+
+			<br/><br/>
+
+			Segni particalari:
+			<textarea name="txtSegni"></textarea>
+
+			<br/><br/>
+
+			Come ha scoperto la scuola:
+			<select name="lstScoperta[]" multiple size="4">
+				<option value="1">Giornali</option>
+				<option value="2">Amici</option>
+				<option value="3">Social</option>
+				<option value="4">Altro</option>
+			</select> 
+
+			<br/><br/>
+
+			<!-- <input type="submit" value="CONFERMA" formaction="registrazione.php" /> -->
+			<input type="button" value="CONFERMA" id="btnConferma">
+
+		</form>
+
+		<br/><br/>
+		<div id="msgErrore" style="color: red"></div> 
+    </body>
+    </html>
