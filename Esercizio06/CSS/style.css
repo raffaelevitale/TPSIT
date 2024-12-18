@@ -7,11 +7,11 @@ body {
     padding: 0;
 }
 
-.login-container, form {
+.login-container, .home-container, .departure-container, .booking-container {
     background-color: rgba(255, 255, 255, 0.9);
     padding: 30px;
     margin: 80px auto;
-    width: 350px;
+    width: 400px;
     border-radius: 10px;
     text-align: center;
 }
@@ -19,7 +19,7 @@ body {
 input, select {
     width: 90%;
     padding: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 0px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
@@ -54,7 +54,6 @@ h1, h2 {
 
 a {
     display: block;
-    text-align: center;
     margin-top: 20px;
     color: #fff;
     text-decoration: none;
@@ -62,4 +61,81 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+/* Nuovi stili per il design moderno */
+.card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.card-header {
+    border-bottom: none;
+    padding: 1.5rem;
+}
+
+.ticket-details {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    border-left: 5px solid #2980b9;
+}
+
+.form-select, .form-control {
+    border-radius: 8px;
+    padding: 12px;
+    border: 1px solid #dee2e6;
+}
+
+.form-select:focus, .form-control:focus {
+    border-color: #2980b9;
+    box-shadow: 0 0 0 0.2rem rgba(41, 128, 185, 0.25);
+}
+
+.btn {
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #2980b9;
+    border-color: #2980b9;
+}
+
+.btn-primary:hover {
+    background-color: #1f5f8b;
+    border-color: #1f5f8b;
+}
+
+.table {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table th {
+    background-color: #f8f9fa;
+    border: none;
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+.welcome-container {
+    text-align: center;
+    padding: 50px 20px;
+    max-width: 600px;
+    margin: 100px auto;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.alert {
+    border-radius: 8px;
+    border: none;
+    padding: 15px 20px;
 }

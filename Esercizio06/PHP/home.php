@@ -1,81 +1,83 @@
 <?php
-// home.php
 session_start();
-if (!isset($_SESSION['user_type'])) {
-    header('Location: index.php');
-    exit();
-}
 require 'functions.php';
 
-$user_type = $_SESSION['user_type'];
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $data = $_POST['data'];
-    $partenza = $_POST['partenza'];
-    $arrivo = $_POST['arrivo'];
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
-    $orari = generaOrariPartenza($data);
-    $orario_partenza = $orari[0]; // Primo orario disponibile
-
-    $stazioni = getStazioni($partenza, $arrivo);
-    $durata_viaggio = (count($stazioni) - 1) * 13; // Sottrai la stazione di partenza
-    $orario_arrivo = aggiungiMinuti($orario_partenza, $durata_viaggio);
-
-    $prezzo = calcolaPrezzo($stazioni);
-
-    if ($user_type == 2 && isset($_POST['prenota'])) {
-        // Logica di prenotazione (da implementare)
-        $messaggio = "Biglietto prenotato con successo!";
+    $userType = authenticateUser($username, $password);
+    if ($userType) {
+        $_SESSION['userType'] = $userType;
+        $_SESSION['username'] = $username;
+    } else {
+        header('Location: index.php');
+        exit();
+    }
+} else {
+    if (!isset($_SESSION['userType'])) {
+        header('Location: index.php');
+        exit();
     }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Home - Servizio Treni</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="../CSS/style.css">
 </head>
 <body>
-    <h1>Benvenuto!</h1>
-
-    <form method="post" action="">
-        <label for="data">Data:</label>
-        <input type="date" name="data" required><br>
-
-        <label for="partenza">Stazione di Partenza:</label>
-        <select name="partenza" required>
-            <?php foreach ($tutte_stazioni as $stazione): ?>
-                <option value="<?php echo $stazione; ?>"><?php echo $stazione; ?></option>
-            <?php endforeach; ?>
-        </select><br>
-
-        <label for="arrivo">Stazione di Arrivo:</label>
-        <select name="arrivo" required>
-            <?php foreach ($tutte_stazioni as $stazione): ?>
-                <option value="<?php echo $stazione; ?>"><?php echo $stazione; ?></option>
-            <?php endforeach; ?>
-        </select><br>
-
-        <button type="submit">Consulta Orari</button>
-
-        <?php if ($user_type == 2): ?>
-            <button type="submit" name="prenota">Prenota Biglietto</button>
-        <?php endif; ?>
-    </form>
-
-    <?php if (isset($orario_partenza)): ?>
-        <h2>Dettagli del Viaggio</h2>
-        <p><strong>Data:</strong> <?php echo $data; ?></p>
-        <p><strong>Partenza:</strong> <?php echo $partenza; ?> alle <?php echo $orario_partenza; ?></p>
-        <p><strong>Arrivo:</strong> <?php echo $arrivo; ?> alle <?php echo $orario_arrivo; ?></p>
-        <p><strong>Prezzo:</strong> €<?php echo number_format($prezzo, 2); ?></p>
-    <?php endif; ?>
-
-    <?php if (isset($messaggio)): ?>
-        <p class="success"><?php echo $messaggio; ?></p>
-    <?php endif; ?>
-
-    <a href="logout.php">Logout</a>
+    <div class="container mt-5">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h2 class="text-center mb-0">
+                    <i class="fas fa-user-circle"></i> 
+                    Benvenuto, <?php echo htmlspecialchars($_SESSION['username']); ?>!
+                </h2>
+            </div>
+            <div class="card-body">
+                <div class="row justify-content-center g-4">
+                    <div class="col-md-6">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body text-center">
+                                <i class="fas fa-search fa-3x mb-3 text-primary"></i>
+                                <h3>Consulta Orari</h3>
+                                <p class="text-muted">Verifica gli orari dei treni e i prezzi dei biglietti</p>
+                                <a href="departure_times.php" class="btn btn-primary w-100">
+                                    <i class="fas fa-clock"></i> Consulta Partenze
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <?php if ($_SESSION['userType'] == 2): ?>
+                    <div class="col-md-6">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body text-center">
+                                <i class="fas fa-ticket-alt fa-3x mb-3 text-success"></i>
+                                <h3>Prenota Biglietti</h3>
+                                <p class="text-muted">Acquista i biglietti per il tuo viaggio</p>
+                                <a href="departure_times.php" class="btn btn-success w-100">
+                                    <i class="fas fa-shopping-cart"></i> Prenota Ora
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <?php endif; ?>
+                </div>
+                
+                <div class="text-center mt-4">
+                    <a href="logout.php" class="btn btn-danger">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
