@@ -78,24 +78,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             <label class="text-muted">Orario di Arrivo</label>
                                             <p class="h5"><?= htmlspecialchars($arrival_time) ?></p>
                                         </div>
-                                        <div class="mb-3"></div>
+                                        <div class="mb-3">
                                             <label class="text-muted">Prezzo</label>
                                             <p class="h4 text-success">€<?= htmlspecialchars(number_format($price, 2)) ?></p>
-                                        </div>
+                                        </div> <!-- Chiusura corretta del div.mb-3 -->
                                     </div>
-                                </div>
-                                <div class="text-center mt-3"></div>
+                                </div> <!-- Chiusura corretta del div.row -->
+                                <div class="text-center mt-3">
                                     <div class="barcode">
                                         <i class="fas fa-barcode fa-2x"></i>
                                         <small class="d-block text-muted mt-2">Biglietto #<?= rand(10000, 99999) ?></small>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                            </div> <!-- Chiusura corretta del div.ticket-body -->
+                        </div> <!-- Chiusura corretta del div.ticket-card -->
                     </div>
                 <?php endif; ?>
 
-                <div class="text-center mt-4"></div>
+                <div class="text-center mt-4">
                     <a href="departure_times.php" class="btn btn-primary me-2">
                         <i class="fas fa-search"></i> Cerca altri orari
                     </a>

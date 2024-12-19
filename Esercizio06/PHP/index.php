@@ -1,18 +1,16 @@
 <?php
 session_start();
+require 'functions.php';
 $error = '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
     
-    if ($username == 'utente1' && $password == 'password1') {
-        $_SESSION['userType'] = 1;
-        $_SESSION['username'] = $username;
-        header('Location: home.php');
-        exit();
-    } elseif ($username == 'utente2' && $password == 'password2') {
-        $_SESSION['userType'] = 2;
+    // Aggiornare per usare la funzione in italiano
+    $userType = autenticaUtente($username, $password);
+    if ($userType) {
+        $_SESSION['userType'] = $userType;
         $_SESSION['username'] = $username;
         header('Location: home.php');
         exit();
@@ -33,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
     <div class="container">
         <div class="login-container">
-            <h2><i class="fas fa-train mb-4"></i> Accesso</h2>
+            <h2 style="color: black;"><i class="fas fa-train mb-4"></i> Accesso</h2>
             <?php if($error): ?>
                 <div class="alert alert-danger">
                     <i class="fas fa-exclamation-circle"></i> <?php echo $error; ?>

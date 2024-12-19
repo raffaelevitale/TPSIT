@@ -68,11 +68,14 @@ a:hover {
     border: none;
     border-radius: 15px;
     overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .card-header {
     border-bottom: none;
     padding: 1.5rem;
+    background-color: #2980b9;
+    color: white;
 }
 
 .ticket-details {
@@ -95,7 +98,7 @@ a:hover {
 
 .btn {
     border-radius: 8px;
-    padding: 12px 24px;
+    padding: 10px 20px;
     font-weight: 500;
     transition: all 0.3s ease;
 }
@@ -113,6 +116,7 @@ a:hover {
 .table {
     border-radius: 8px;
     overflow: hidden;
+    margin-top: 20px;
 }
 
 .table th {
@@ -138,4 +142,16 @@ a:hover {
     border-radius: 8px;
     border: none;
     padding: 15px 20px;
+}
+
+.container {
+    margin-top: 2rem;
+}
+
+.ticket-card {
+    transition: transform 0.3s ease;
+}
+
+.ticket-card:hover {
+    transform: translateY(-5px);
 }

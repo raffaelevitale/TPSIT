@@ -7,7 +7,8 @@ if (!isset($_SESSION['userType'])) {
     exit();
 }
 
-$stations = getStations();
+// Aggiornare le chiamate alle funzioni con i nomi italiani
+$stations = mostraStazioni();
 $error = '';
 $schedules = [];
 
@@ -17,12 +18,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $date = $_POST['date'] ?? '';
 
     if ($departure && $arrival && $date) {
-        $route = getStazioni($departure, $arrival);
+        $route = trovaPercorso($departure, $arrival);
         if (!empty($route)) {
-            $departureTimes = generateDepartureTimes($date);
+            $departureTimes = trovaOrariPartenze($date);
             foreach ($departureTimes as $time) {
-                $arrivalTime = calculateArrivalTime($time, count($route) - 1);
-                $price = calculateTicketPrice(count($route) - 1);
+                $arrivalTime = calcolaOrarioArrivo($time, count($route) - 1);
+                $price = calcolaPrezzo(count($route) - 1);
                 $schedules[] = [
                     'departure_time' => $time,
                     'arrival_time' => $arrivalTime,

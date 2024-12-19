@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $userType = authenticateUser($username, $password);
+    $userType = autenticaUtente($username, $password);
     if ($userType) {
         $_SESSION['userType'] = $userType;
         $_SESSION['username'] = $username;
